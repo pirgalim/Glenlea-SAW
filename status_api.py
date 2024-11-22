@@ -2,7 +2,7 @@ from flask import Flask, jsonify
 import json, urllib.request
 
 
-PWI_URL = 'http://localhost:8220/status'
+PWI_URL = 'http://127.0.0.1:5005/status'
 PORT = 5005
 
 

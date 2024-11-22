@@ -1,8 +1,7 @@
 from flask import Flask, jsonify
-import json, urllib.request
+from pwi4_client import PWI4
 
 
-PWI_URL = 'http://127.0.0.1:8220/status'
 PORT = 5005
 
 
@@ -11,8 +10,16 @@ app = Flask(__name__)
 @app.route('/status', methods=['GET'])
 def status():    
     try:
-        with urllib.request.urlopen(PWI_URL) as response:
-            return json.load(response)
+        
+        from pwi4_client import PWI4
+        print("Connecting to PWI4...")
+
+        pwi4 = PWI4()
+        s = pwi4.status()
+        print("Mount connected:", s.mount.is_connected)
+            
+        return jsonify(s)
+        
     except:
         return jsonify('An error has occurred')
 

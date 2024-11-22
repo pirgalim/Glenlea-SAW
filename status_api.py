@@ -11,15 +11,24 @@ app = Flask(__name__)
 def status():    
     try:
         
+        status = dict()
+        
         print("Connecting to PWI4...")
 
         pwi4 = PWI4()
         s = pwi4.status()
         
-        # message = "Mount connected:", s.mount.is_connected
-        # print(message)
+        # connect = "Mount connected:", s.mount.is_connected
+        
+        
+        # status['mount'] = s.mount.is_connected
+        
+        # status['time'] = s.response.timestamp
+        
+
+        status = s.raw
             
-        return jsonify(s)
+        return jsonify(status)
         
     except:
         return jsonify('An error has occurred')

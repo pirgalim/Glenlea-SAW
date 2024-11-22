@@ -16,10 +16,10 @@ def status():
         pwi4 = PWI4()
         s = pwi4.status()
         
-        message = "Mount connected:", s.mount.is_connected
-        print(message)
+        # message = "Mount connected:", s.mount.is_connected
+        # print(message)
             
-        return jsonify(message)
+        return jsonify(s)
         
     except:
         return jsonify('An error has occurred')

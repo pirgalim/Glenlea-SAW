@@ -1,4 +1,5 @@
 from flask import Flask, jsonify
+from flask_cors import CORS
 from pwi4_client import PWI4
 
 
@@ -6,29 +7,16 @@ PORT = 5005
 
 
 app = Flask(__name__)
+CORS(app)
+
 
 @app.route('/status', methods=['GET'])
 def status():    
     try:
-        
-        status = dict()
-        
         print("Connecting to PWI4...")
-
         pwi4 = PWI4()
-        s = pwi4.status()
-        
-        # connect = "Mount connected:", s.mount.is_connected
-        
-        
-        # status['mount'] = s.mount.is_connected
-        
-        # status['time'] = s.response.timestamp
-        
-
-        status = s.raw
-            
-        return jsonify(status)
+        s = pwi4.status()            
+        return jsonify(s.raw)
         
     except:
         return jsonify('An error has occurred')

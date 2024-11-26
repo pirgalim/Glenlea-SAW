@@ -10,7 +10,6 @@ PORT = 16001
 
 @app.route("/", methods=["GET"])
 def status():
-    
     try:
         with urllib.request.urlopen(LOCAL_IP) as response:
             return json.load(response)

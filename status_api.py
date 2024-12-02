@@ -17,9 +17,10 @@ def status():
         pwi4 = PWI4()
         s = pwi4.status()            
         return jsonify(s.raw)
+
         
     except:
-        return jsonify('An error has occurred')
+        return jsonify('Unable to connect to PWI4...')
 
 
 if __name__ == '__main__':

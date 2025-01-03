@@ -1,3 +1,6 @@
 .DS_Store
 __pycache__/pwi4_client.cpython-311.pyc
 pwi4_client.py
+__pycache__/pwi4_client.cpython-310.pyc
+config.py
+__pycache__/nina_custom_client.cpython-310.pyc

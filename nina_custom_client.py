@@ -1,3 +1,5 @@
+import asyncio
+import websockets
 import json, urllib.request
 
 class NINA_API:
@@ -7,8 +9,19 @@ class NINA_API:
         self.api_key = api_key
         
         
-    def connect(self):
-        pass
+    async def connect(self):
+        async with websockets.connect(self.ip + "events/v1") as websocket:
+            await asyncio.sleep(1)
+            await websocket.send(json.dumps({'ApiKey': self.api_key}))
+        while True:
+            try:
+                event = json.loads(await websocket.recv())
+                print(event)
+                return event
+            except websockets.ConnectionClosed:
+                break
+        asyncio.run(self.connect())
+    
     
 
     

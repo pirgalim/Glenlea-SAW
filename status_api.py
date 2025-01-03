@@ -6,12 +6,15 @@ from nina_custom_client import NINA_API
 
 PORT = 5005
 
+from config import IP as NINA_URL
+from config import API_KEY as NINA_KEY
+
 
 #TODO: replace this process with a config file
 # Startup settings for exe file
-NINA_URL = input("Enter the NINA IP: ")
-NINA_KEY = input("Enter the NINA API key: ")
-print(NINA_KEY)
+# NINA_URL = input("Enter the NINA IP: ")
+# NINA_KEY = input("Enter the NINA API key: ")
+# print(NINA_KEY)
 
 
 
@@ -38,11 +41,11 @@ def check():
     nina.status("/focuser")
     
     
-@app.route('/nina/listener', methods=['GET'])
+@app.route('/nina', methods=['GET'])
 def event_listener():
     nina = NINA_API(NINA_URL, NINA_KEY)
-    nina.connect()
-    
+    event = nina.connect()
+    return event
     
     
     

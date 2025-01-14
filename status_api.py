@@ -40,6 +40,8 @@ def check():
     nina.status("/filterwheel")
     nina.status("/focuser")
     
+    return "ran"
+    
     
 @app.route('/nina', methods=['GET'])
 def event_listener():
